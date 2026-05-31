@@ -4,10 +4,8 @@ import psycopg2
 from datetime import datetime
 
 def get_severity(vuln):
-    # Проверяем массив database_specific
     if "database_specific" in vuln and "severity" in vuln["database_specific"]:
         return vuln["database_specific"]["severity"]
-    # Проверяем массив severity (CVSS)
     if "severity" in vuln and len(vuln["severity"]) > 0:
         return vuln["severity"][0].get("type", "UNKNOWN")
     return "UNKNOWN"
@@ -31,7 +29,6 @@ def main():
             results = data.get("results", [])
             vuln_count = 0
 
-            # Исправленная вложенность под формат osv-scanner:
             for result_item in results:
                 packages = result_item.get("packages", [])
                 
