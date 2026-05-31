@@ -4,3 +4,4 @@ pipeline.log
 osv-scanner
 __pycache__/
 *.py[cod]
+pgdata/
