@@ -8,7 +8,6 @@ import sys
 from datetime import datetime
 
 def main():
-    # Пути
     sbom_file = "./sbom.cdx.json"
     os_id_path = "/etc/machine-id"
 
@@ -29,7 +28,6 @@ def main():
         print("Ошибка: cdxgen упал! Проверь права или наличие пакета.")
         sys.exit(1)
 
-    # Вставка патча: принудительная смена версии спецификации с 1.7 на 1.5
     try:
         with open(sbom_file, 'r') as f:
             content = f.read()
