@@ -15,7 +15,6 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_UPDATE_CHECK_ENABLED=false
-      # Отключаем автоустановку плагинов
       - GF_PLUGINS_ENABLE_ALF=false
   node-exporter:
     image: prom/node-exporter:latest
@@ -39,8 +38,7 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  # Сразу добавляем SQL Exporter (чтобы Grafana видела данные из БД)
+      
   sql-exporter:
     image: burningalchemist/sql_exporter
     container_name: sql_exporter
