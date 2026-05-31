@@ -1,4 +1,4 @@
--- Сначала создаем родительскую таблицу
+
 CREATE TABLE IF NOT EXISTS os_inventory (
     id SERIAL PRIMARY KEY,
     os_id TEXT,
@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS os_inventory (
     collected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Только потом таблицу с зависимостью
 CREATE TABLE IF NOT EXISTS vulnerabilities (
     id SERIAL PRIMARY KEY,
     os_inventory_id INTEGER REFERENCES os_inventory(id) ON DELETE CASCADE,
