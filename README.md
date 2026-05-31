@@ -2,7 +2,7 @@
 1. Node.js LTS: curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y nodejs
 2. sudo apt-get install -y nodejs python3-pip python3-psycopg2
 3. sudo npm install -g @cyclonedx/cdxgen
-4. pip3 install -r requirements.txt --break-system-packages
+4. pip3 install -r requirements.txt
 5.wget https://github.com/google/osv-scanner/releases/latest/download/osv-scanner_linux_amd64 -O osv-scanner && chmod +x osv-scanner
 
 #Запуск конвейера
