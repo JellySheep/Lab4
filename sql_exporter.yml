@@ -1,0 +1,39 @@
+collectors:
+  - collector_name: "os_software_collector"
+    metrics:
+      - metric_name: "os_software_metrics"
+        type: "gauge"
+        help: "Данные по ОС и количеству ПО"
+        key_labels:
+          - "os_id"
+          - "os_name"
+        values:
+          - "software_count"
+        query: |
+          SELECT os_id, os_name, software_count
+          FROM os_inventory
+          ORDER BY collected_at DESC
+          LIMIT 1;
+
+  - collector_name: "os_vulnerabilities_collector"
+    metrics:
+      - metric_name: "os_vulnerabilities_metrics"
+        type: "gauge"
+        help: "Количество уязвимостей по уровням критичности"
+        key_labels:
+          - "severity"
+        values:
+          - "count"
+        query: |
+          SELECT COALESCE(severity, 'UNKNOWN') AS severity, COUNT(*) as count
+          FROM vulnerabilities
+          GROUP BY severity;
+
+jobs:
+  - job_name: "os_inventory_job"
+    static_configs:
+      - targets:
+          monitoring_db: 'postgres://user:password@postgres_db:5432/monitoring?sslmode=disable'
+    collectors:
+      - "os_software_collector"
+      - "os_vulnerabilities_collector"

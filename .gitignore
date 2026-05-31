@@ -1,0 +1,6 @@
+sbom.cdx.json
+scan.json
+pipeline.log
+osv-scanner
+__pycache__/
+*.py[cod]
